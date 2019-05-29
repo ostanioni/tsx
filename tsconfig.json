@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "es6",
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "esModuleInterop": true,
     "jsx": "react",
     "lib": [
       "dom",
       "dom.iterable",
       "scripthost",
-      "es6"
+      "esnext"
     ]
   },
   "include": [
