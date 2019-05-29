@@ -4,19 +4,19 @@
 /***___BABEL_LOADER___ ***/
 const BABEL = { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" };
 /***___TSX_LOADER___***/
-const TSX = { test: /\.tsx$/, loader: "awesome-typescript-loader" };
+// const TSX = { test: /\.tsx$/, loader: "awesome-typescript-loader" };
 /***___TS_LOADER___***/
-const TS = { test: /\.ts$/, loader: "ts-loader" };
+const TS = { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/ };
 /***___IMAGES_LOADER___***/
 const IMAGES = { test: /\.(png|svg|jpg|gif)$/,  use: [ { loader: 'file-loader', /*exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],*/ options: { name(file) { if (process.env.NODE_ENV === 'development') { return 'imgs/[path][name].[ext]'; } return 'imgs/[hash].[ext]';},},},]};
 /***___WORKER_LOADER___***/
-const WORKER_LOADER = { test: /\.worker\.js$/,  use: { loader: 'worker-loader' } };
+// const WORKER_LOADER = { test: /\.worker\.js$/,  use: { loader: 'worker-loader' } };
 /***__FONT_LOADER___***/
 const FONT = { test: /\.(woff|woff2|eot|ttf|otf)$/, use: [ 'file-loader' ] };
 /***__XML_LOADER___***/
-const XML = { test: /\.xml$/, use: [ 'xml-loader'  ] };
+// const XML = { test: /\.xml$/, use: [ 'xml-loader'  ] };
 /***__CSV_LOADER___***/
-const CSV = { test: /\.(csv|tsv)$/, use: [ 'csv-loader' ] };
+// const CSV = { test: /\.(csv|tsv)$/, use: [ 'csv-loader' ] };
 /***__MD_LOADER___***/
 const MD = { test: /\.md$/, use: [{ loader: "raw-loader" }, { loader: "markdown-loader", options: { } }] };
 // const MD = { test: /\.md$/, use: [{ loader: "html-loader" }, { loader: "markdown-loader", options: { } }] };
@@ -25,25 +25,24 @@ const RAW = { test: /\.txt$/i, use: 'raw-loader'};
 /***__HTML_LOADER___***/
 // const HTML = { test: /\.(html)$/, use: { loader: 'html-loader', options: { attrs: [':data-src'] } }};
 /***__ESLINT_LOADER___***/
-const ESLINT = { test: /\.(js|mjs|jsx)$/, enforce: 'pre', use: [ { options: { formatter: require.resolve('react-dev-utils/eslintFormatter'), eslintPath: require.resolve('eslint'), }, loader: require.resolve('eslint-loader'), }, ] }; //, include: paths.appSrc };
+// const ESLINT = { test: /\.(js|mjs|jsx)$/, enforce: 'pre', use: [ { options: { formatter: require.resolve('react-dev-utils/eslintFormatter'), eslintPath: require.resolve('eslint'), }, loader: require.resolve('eslint-loader'), }, ] }; //, include: paths.appSrc };
 /**___SVG_SNAP____****/
-SVG_SNAP = {
-  test: require.resolve('snapsvg/dist/snap.svg.js'),
-  use: 'imports-loader?this=>window,fix=>module.exports=0',
-}
+// SVG_SNAP = {
+//   test: require.resolve('snapsvg/dist/snap.svg.js'),
+//   use: 'imports-loader?this=>window,fix=>module.exports=0',
+// }
   
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 
 /*_____________CONTEXT_______________ */
 const CONTEXT = path.resolve(__dirname, '../');
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 /* __________ENTRY__POINT_____________*/
-const $ENTRY = './src/index.js'
+const $ENTRY = './src/index.tsx'
 
 module.exports = {
   context: CONTEXT,
@@ -78,38 +77,9 @@ module.exports = {
     },
   },
   module: {
-    rules: [ BABEL, FONT, TS, TSX, IMAGES, WORKER_LOADER, MD, RAW, ESLINT, SVG_SNAP]
+    rules: [ BABEL, FONT, TS, TSX, IMAGES, WORKER_LOADER, MD, RAW, SVG_SNAP]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    
-    // new ForkTsCheckerWebpackPlugin({
-    //   typescript: resolve.sync('typescript', {
-    //     basedir: paths.appNodeModules,
-    //   }),
-    //   async: isEnvDevelopment,
-    //   useTypescriptIncrementalApi: true,
-    //   checkSyntacticErrors: true,
-    //   resolveModuleNameModule: process.versions.pnp
-    //     ? `${__dirname}/pnpTs.js`
-    //     : undefined,
-    //   resolveTypeReferenceDirectiveModule: process.versions.pnp
-    //     ? `${__dirname}/pnpTs.js`
-    //     : undefined,
-    //   tsconfig: paths.appTsConfig,
-    //   reportFiles: [
-    //     '**',
-    //     '!**/__tests__/**',
-    //     '!**/?(*.)(spec|test).*',
-    //     '!**/src/setupProxy.*',
-    //     '!**/src/setupTests.*',
-    //   ],
-    //   watch: paths.appSrc,
-    //   silent: true,
-    //   // The formatter is invoked directly in WebpackDevServerUtils during development
-    //   formatter: isEnvProduction ? typescriptFormatter : undefined,
-    // }),
-
     new HtmlWebpackPlugin({
       inject: true,
       template: `${CONTEXT}/public/index.html`,
@@ -157,4 +127,8 @@ module.exports = {
       { debug: 'info' }
     )
   ],
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
+  }
 };

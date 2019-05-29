@@ -1,8 +1,10 @@
-let n = 1;
-const s = "hi";
-let sum = (a, b) => {
-    let c = a + b;
-    return c;
-};
-sum(5, 10);
-//# sourceMappingURL=index.js.map
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+// import * as serviceWorker from './serviceWorker';
+ReactDOM.render(React.createElement(App, null), document.getElementById('"edf720cb-b61fe"'));
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+// serviceWorker.unregister();

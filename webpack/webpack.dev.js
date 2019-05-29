@@ -11,21 +11,9 @@ const SRC = `${CONTEXT}/src`
 /***___SOURCE_MAP____***/
 // const JS_SOURCE_MAP = { enforce: "pre", test: /\.js$/, loader: "source-map-loader" };
 const JS_SOURCE_MAP = {
-  test: /\.(js|jsx)$/,
   enforce: 'pre',
-  use: [
-    {
-      options: {
-        formatter: require.resolve('react-dev-utils/eslintFormatter'),
-        eslintPath: require.resolve('eslint'),
-      },
-      loader: require.resolve('eslint-loader'),
-    },
-    {
-      loader: "source-map-loader",
-    }
-  ],
-  include: SRC,
+  test: /\.js$/,
+      loader: "source-map-loader"
 }
 
 /***___SCSS_SOURCE_MAP__ ***/

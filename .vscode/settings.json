@@ -3,7 +3,5 @@
   "window.zoomLevel": 1,
   "typescript.tsdk": "./node_modules/typescript/lib",
   "editor.detectIndentation": false,
-  "editor.multiCursorModifier": "ctrlCmd",
-  "**/*.js": { "when": "$(basename).ts" },
-"**/**.js": { "when": "$(basename).tsx" }
+  "editor.multiCursorModifier": "ctrlCmd"
 }
