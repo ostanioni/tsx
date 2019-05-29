@@ -12,7 +12,11 @@
       "dom.iterable",
       "scripthost",
       "esnext"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths":{
+      "components":["/components"]
+    }
   },
   "include": [
     "src/**/*"

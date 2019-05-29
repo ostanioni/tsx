@@ -1,5 +1,6 @@
 import React from 'react';
 // import logo from './logo.svg';
+import Fc from 'components/Fc';
 const App = () => {
     return (React.createElement("div", { className: "App" },
         React.createElement("header", { className: "App-header" },
@@ -7,6 +8,7 @@ const App = () => {
                 "Edit ",
                 React.createElement("code", null, "src/App.tsx"),
                 " and save to reload."),
-            React.createElement("a", { className: "App-link", href: "https://reactjs.org", target: "_blank", rel: "noopener noreferrer" }, "Learn React"))));
+            React.createElement("a", { className: "App-link", href: "https://reactjs.org", target: "_blank", rel: "noopener noreferrer" }, "Learn React"),
+            React.createElement(Fc, null))));
 };
 export default App;
