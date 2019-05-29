@@ -6,7 +6,7 @@
     {    
       "type": "shell",
       "label": "sh",
-      "command": "tsc",
+      "command": "tsc -w",
       "problemMatcher": [
         "$tsc"
       ],

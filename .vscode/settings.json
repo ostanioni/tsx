@@ -6,6 +6,7 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "files.exclude": {
     "**/*.js": { "when": "$(basename).ts" },
-    "**/**.js": { "when": "$(basename).tsx" }
+    "**/**.js": { "when": "$(basename).tsx" },
+    "**/**.jsx": { "when": "$(basename).tsx" }
   }
 }

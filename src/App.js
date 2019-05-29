@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
 const App = () => {
     return (React.createElement("div", { className: "App" },
         React.createElement("header", { className: "App-header" },
