@@ -6,6 +6,7 @@
     "sourceMap": false,
     "esModuleInterop": true,
     "jsx": "react",
+    "locale": "ru",
     "lib": [
       "dom",
       "dom.iterable",

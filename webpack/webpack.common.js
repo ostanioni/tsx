@@ -6,7 +6,7 @@ const BABEL = { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
 /***___TSX_LOADER___***/
 // const TSX = { test: /\.tsx$/, loader: "awesome-typescript-loader" };
 /***___TS_LOADER___***/
-const TS = { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/ };
+// const TS = { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/ };
 /***___IMAGES_LOADER___***/
 const IMAGES = { test: /\.(png|svg|jpg|gif)$/,  use: [ { loader: 'file-loader', /*exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],*/ options: { name(file) { if (process.env.NODE_ENV === 'development') { return 'imgs/[path][name].[ext]'; } return 'imgs/[hash].[ext]';},},},]};
 /***___WORKER_LOADER___***/
@@ -42,7 +42,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CONTEXT = path.resolve(__dirname, '../');
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 /* __________ENTRY__POINT_____________*/
-const $ENTRY = './src/index.tsx'
+const $ENTRY = './src/index.js'
 
 module.exports = {
   context: CONTEXT,
@@ -55,7 +55,7 @@ module.exports = {
     publicPath: ASSET_PATH,
   },
   resolve: {
-    extensions: [ '.jsx', '.js', '.json', "ts", "tsx" ],
+    extensions: [ '.jsx', '.js', '.json' ],
     alias: {
      'react-dom': '@hot-loader/react-dom',
       pages:      `${CONTEXT}/src/pages`,
@@ -77,7 +77,7 @@ module.exports = {
     },
   },
   module: {
-    rules: [ BABEL, FONT, TS, TSX, IMAGES, WORKER_LOADER, MD, RAW, SVG_SNAP]
+    rules: [ BABEL, FONT, IMAGES, MD, RAW]
   },
   plugins: [
     new HtmlWebpackPlugin({
