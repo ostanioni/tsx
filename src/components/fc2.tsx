@@ -1,14 +1,12 @@
 import React from 'react';
 // import logo from './logo.svg';
-import Fc from 'components/Fc';
-import Fc2 from './components/Fc';
 
-const App: React.FC = () => {
+const Fc2: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <code>HELLO</code> and save to reload.
         </p>
         <a
           className="App-link"
@@ -18,11 +16,9 @@ const App: React.FC = () => {
         >
           Learn React
         </a>
-        <Fc />
-        <Fc2 />
       </header>
     </div>
   );
 }
 
-export default App;
+export default Fc2;
