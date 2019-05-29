@@ -1,2 +1,11 @@
-"**/*.js": { "when": "$(basename).ts" },
-"**/**.js": { "when": "$(basename).tsx" }
+/*VS Code settings.json*/
+"files.exclude": {
+    "**/*.js": { "when": "$(basename).ts" },
+    "**/**.js": { "when": "$(basename).tsx" },
+    "**/**.jsx": { "when": "$(basename).tsx" }
+  }
+/* FROM webpack.common.js */
+externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
+  }

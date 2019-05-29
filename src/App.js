@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 const App = () => {
     return (React.createElement("div", { className: "App" },
         React.createElement("header", { className: "App-header" },
-            React.createElement("img", { src: logo, className: "App-logo", alt: "logo" }),
             React.createElement("p", null,
                 "Edit ",
                 React.createElement("code", null, "src/App.tsx"),

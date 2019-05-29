@@ -125,9 +125,5 @@ module.exports = {
       ], 
       { debug: 'info' }
     )
-  ],
-  externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-  }
+  ]
 };
