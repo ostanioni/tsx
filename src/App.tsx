@@ -1,7 +1,15 @@
 import React from 'react';
 // import logo from './logo.svg';
 import Fc from 'components/Fc';
-import Fc2 from './components/Fc';
+import Fc2 from 'components/Fc';
+import {StyledDiv, ClCom, FC_} from 'components/comp';
+
+const RCE = React.createElement("div",null);
+
+console.log('STYLED = ', StyledDiv);
+console.log('FC = ',     FC_);
+console.log('CLASS = ',  ClCom);
+console.log('CRE = ',  RCE);
 
 const App: React.FC = () => {
   return (
