@@ -1,14 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
-const StyledDiv = styled.div `
- position: fixed;
- top: 0;
- height: 100px;
- background-color: ${props => props.theme.colors.secondary};
-`;
+import React, { useEffect } from 'react';
+// const StyledDiv = styled.div`
+//  position: fixed;
+//  top: 0;
+//  height: 100px;
+//  background-color: ${props => props.theme.colors.secondary};
+// `
+const Com = () => {
+    useEffect(() => {
+        alert("Com");
+    });
+    return (React.createElement("div", null, "FC"));
+};
 function TrainingComponent() {
-    return (React.createElement(StyledDiv, null, "I'm the trainingComponent"));
+    useEffect(() => {
+        alert("TC");
+    });
+    return (React.createElement("div", null, "JSX"));
 }
+console.log('COM = ', Com);
+console.log('JSX = ', TrainingComponent);
 export default TrainingComponent;
 // class ClCom extends React.Component {
 //   render() {

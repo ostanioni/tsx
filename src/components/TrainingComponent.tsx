@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
- position: fixed;
- top: 0;
- height: 100px;
- background-color: ${props => props.theme.colors.secondary};
-`
-function TrainingComponent(){
+// const StyledDiv = styled.div`
+//  position: fixed;
+//  top: 0;
+//  height: 100px;
+//  background-color: ${props => props.theme.colors.secondary};
+// `
+const Com: React.FC = () => {
+  useEffect(() => {
+    alert("Com");
+  });
   return (
-    <StyledDiv>
-      I'm the trainingComponent
-    </StyledDiv>
+    <div>FC</div>
   )
 }
+
+function TrainingComponent(){
+  useEffect(() => {
+    alert("TC");
+  });
+  return (
+       <div>JSX</div>
+      
+  )
+}
+console.log('COM = ', Com)
+console.log('JSX = ', TrainingComponent)
 export default TrainingComponent;
 // class ClCom extends React.Component {
 //   render() {

@@ -3,13 +3,11 @@ import { ThemeProvider } from 'styled-components';
 import { myTheme } from 'theming/theme';
 import TrainingComponent from 'components/TrainingComponent'
 
-interface appInterface {
-  
-}
+
 function App(){
   return (
     <ThemeProvider theme={myTheme}>
-      <TrainingComponent />
+      <TrainingComponent msg="HelloHelloHello"/>
     </ThemeProvider>
   )
 }
