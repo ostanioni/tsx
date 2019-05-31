@@ -6,16 +6,21 @@ import React, { useEffect } from 'react';
 //  background-color: ${props => props.theme.colors.secondary};
 // `
 const Com = () => {
+  for (let i = 0; i < 3; i++) {
     useEffect(() => {
-        alert("Com");
+      alert('Com');
     });
-    return (React.createElement("div", null, "FC"));
+  }
+  useEffect(() => {
+    alert('Com');
+  });
+  return React.createElement('div', null, 'FC');
 };
 function TrainingComponent() {
-    useEffect(() => {
-        alert("TC");
-    });
-    return (React.createElement("div", null, "JSX"));
+  useEffect(() => {
+    alert('TC');
+  });
+  return React.createElement('div', null, 'JSX');
 }
 console.log('COM = ', Com);
 console.log('JSX = ', TrainingComponent);
@@ -24,7 +29,7 @@ export default TrainingComponent;
 //   render() {
 //          return (
 //            <div>I'm CLASS component</div>
-//          )      
+//          )
 //        }
 // }
 // export {StyledDiv, ClCom, FC_}
@@ -64,7 +69,7 @@ export default TrainingComponent;
 //        <BackToTopStyled onClick={this.toTop} id="BackToTop" className="BackToTop-is-hide">
 //          <Icon width="2.5rem" alt="UP" />
 //        </BackToTopStyled>
-//      )      
+//      )
 //    }
 //  }
 //  export default BackToTop;

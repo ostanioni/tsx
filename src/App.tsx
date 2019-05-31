@@ -1,14 +1,13 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { myTheme } from 'theming/theme';
-import TrainingComponent from 'components/TrainingComponent'
+import TrainingComponent from 'components/TrainingComponent';
 
-
-function App(){
+function App() {
   return (
     <ThemeProvider theme={myTheme}>
-      <TrainingComponent msg="HelloHelloHello"/>
+      <TrainingComponent />
     </ThemeProvider>
-  )
+  );
 }
 export default App;

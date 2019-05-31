@@ -65,6 +65,7 @@ module.exports = {
     'prefer-template': 2,
     'react/destructuring-assignment': 0,
     'react-hooks/rules-of-hooks': 'error',
+    "react-hooks/exhaustive-deps": "warn",
     'react/jsx-closing-tag-location': 0,
     'react/forbid-prop-types': 0,
     'react/jsx-first-prop-new-line': [2, 'multiline'],
@@ -82,7 +83,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: './internals/webpack/webpack.prod.babel.js',
+        config: './webpack/webpack.common.js',
       },
     },
   },

@@ -1,6 +1,6 @@
 {
   "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 2,
   "typescript.tsdk": "./node_modules/typescript/lib",
   "editor.detectIndentation": false,
   "editor.multiCursorModifier": "ctrlCmd",

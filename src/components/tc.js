@@ -1,4 +1,2 @@
 import React from 'react';
-const App = () => {
-    return (React.createElement("div", null, "App"));
-};
+const App = () => React.createElement("div", null, "App");

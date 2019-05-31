@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const App: React.FC = () => {
-  return (
-    <div>App</div>
-  )
-}
+const App: React.FC = () => <div>App</div>;

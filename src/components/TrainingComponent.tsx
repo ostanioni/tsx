@@ -8,35 +8,34 @@ import styled from 'styled-components';
 //  background-color: ${props => props.theme.colors.secondary};
 // `
 const Com: React.FC = () => {
+  for (let i = 0; i < 3; i++) {
+    useEffect(() => {
+      alert('Com');
+    });
+  }
   useEffect(() => {
-    alert("Com");
+    alert('Com');
   });
-  return (
-    <div>FC</div>
-  )
-}
+  return <div>FC</div>;
+};
 
-function TrainingComponent(){
+function TrainingComponent() {
   useEffect(() => {
-    alert("TC");
+    alert('TC');
   });
-  return (
-       <div>JSX</div>
-      
-  )
+  return <div>JSX</div>;
 }
-console.log('COM = ', Com)
-console.log('JSX = ', TrainingComponent)
+console.log('COM = ', Com);
+console.log('JSX = ', TrainingComponent);
 export default TrainingComponent;
 // class ClCom extends React.Component {
 //   render() {
 //          return (
 //            <div>I'm CLASS component</div>
-//          )      
+//          )
 //        }
 // }
 // export {StyledDiv, ClCom, FC_}
-
 
 // const BackToTopStyled = styled.span.attrs(props=>({
 //   onCick: props.onClick,
@@ -60,7 +59,7 @@ export default TrainingComponent;
 //   )
 // }
 // class BackToTop extends React.Component {
-  
+
 //    toTop = ()=>{
 //      window.scrollTo(0,0);
 //    }
@@ -76,7 +75,7 @@ export default TrainingComponent;
 //        <BackToTopStyled onClick={this.toTop} id="BackToTop" className="BackToTop-is-hide">
 //          <Icon width="2.5rem" alt="UP" />
 //        </BackToTopStyled>
-//      )      
+//      )
 //    }
 //  }
 //  export default BackToTop;
