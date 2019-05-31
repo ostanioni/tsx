@@ -16,9 +16,22 @@
     ],
     "baseUrl": "./src",
     "paths":{
-      "components":["/components"]
+      "components":["/components"],
+      "themes":["/themes"]
     }
   },
+  "plugins": [
+    {
+      "name": "typescript-styled-plugin",
+      "tags": [
+        "styled",
+        "css",
+        "injectGlobal",
+        "createGlobalStyle",
+        "keyframes" 
+      ]
+    }
+  ],
   "include": [
     "src/**/*"
   ],

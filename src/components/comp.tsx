@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+interface bttProps {
+  
+}
+
 const StyledDiv = styled.div`
  position: fixed;
  top: 0;
