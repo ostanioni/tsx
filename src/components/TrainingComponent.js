@@ -4,17 +4,20 @@ const StyledDiv = styled.div `
  position: fixed;
  top: 0;
  height: 100px;
- background-color: red;
+ background-color: ${props => props.theme.colors.secondary};
 `;
-const FC_ = () => {
-    return (React.createElement("div", null, "I'm FC"));
-};
-class ClCom extends React.Component {
-    render() {
-        return (React.createElement("div", null, "I'm CLASS component"));
-    }
+function TrainingComponent() {
+    return (React.createElement(StyledDiv, null, "I'm the trainingComponent"));
 }
-export { StyledDiv, ClCom, FC_ };
+export default TrainingComponent;
+// class ClCom extends React.Component {
+//   render() {
+//          return (
+//            <div>I'm CLASS component</div>
+//          )      
+//        }
+// }
+// export {StyledDiv, ClCom, FC_}
 // const BackToTopStyled = styled.span.attrs(props=>({
 //   onCick: props.onClick,
 //   id: props.id,

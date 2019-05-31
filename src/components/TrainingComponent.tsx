@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-interface bttProps {
-  
-}
-
 const StyledDiv = styled.div`
  position: fixed;
  top: 0;
  height: 100px;
- background-color: red;
+ background-color: ${props => props.theme.colors.secondary};
 `
-const FC_ = ()=>{
+function TrainingComponent(){
   return (
-    <div>I'm FC</div>
+    <StyledDiv>
+      I'm the trainingComponent
+    </StyledDiv>
   )
 }
-class ClCom extends React.Component {
-  render() {
-         return (
-           <div>I'm CLASS component</div>
-         )      
-       }
-}
-export {StyledDiv, ClCom, FC_}
+export default TrainingComponent;
+// class ClCom extends React.Component {
+//   render() {
+//          return (
+//            <div>I'm CLASS component</div>
+//          )      
+//        }
+// }
+// export {StyledDiv, ClCom, FC_}
 
 
 // const BackToTopStyled = styled.span.attrs(props=>({

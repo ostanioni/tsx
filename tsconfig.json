@@ -17,7 +17,7 @@
     "baseUrl": "./src",
     "paths":{
       "components":["/components"],
-      "themes":["/themes"]
+      "theming":["/themes"]
     }
   },
   "plugins": [

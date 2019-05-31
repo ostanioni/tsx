@@ -1,3 +1,4 @@
+/// <reference path="styled.d.ts" /> 
 import { DefaultTheme } from 'styled-components'
 
 const myTheme: DefaultTheme = {
