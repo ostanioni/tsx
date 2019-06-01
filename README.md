@@ -35,3 +35,11 @@ Serve production version of the application
 ## Project serve from  `./dist` folder after 'build'
 ### `npm run test`
 Serve production version of the application 
+
+# React - Type-Definitions Cheatsheet
+### React.FC<Props> | React.FunctionComponent<Props>
+    Type representing a functional component
+    `const MyComponent: React.FC<Props> = ...`
+### React.Component<Props, State>
+    Type representing a class component
+    `class MyComponent extends React.Component<Props, State> { ...`
