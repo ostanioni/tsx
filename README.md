@@ -36,15 +36,42 @@ Serve production version of the application
 ### `npm run test`
 Serve production version of the application 
 
-# React - Type-Definitions Cheatsheet
-#### React.FC<Props> | React.FunctionComponent<Props>
+# Определение типов в React
+### "Function Component"
+###<span style="color:#4527A0;">"Функциональный компонент"</span>
+##### React.FC<Props> | React.FunctionComponent<Props>
 Type representing a functional component
 ```js
-    const MyComponent: React.FC<Props> = ...
+const FunctionalComponent: React.FC<Props> = (props)=>{
+  ...
+  return (
+    ...
+  )
+}
 ```
-#### React.Component<Props, State>
+##### React.Component<Props, State>
 Type representing a class component
 
 ```js
-class MyComponent extends React.Component<Props, State> { ...
+class ClassComponent extends React.Component<Props, State> { 
+  ...
+  render(){
+    ...
+    return(
+      ...
+    )
+  }
+}
+```
+##### React.ComponentType<Props>
+Type representing union of (React.FC | React.Component) - used in HOC
+```js
+const withState = <P extends WrappedComponentProps>(
+  WrappedComponent: React.ComponentType<P>,
+) => { ... }
+```
+##### React.ComponentProps<typeof XXX>
+Gets Props type of a specified component XXX (WARNING: does not work with statically declared default props and generic props)
+```js
+type MyComponentProps = React.ComponentProps<typeof MyComponent>;
 ```
