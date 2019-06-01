@@ -6,21 +6,21 @@ import React, { useEffect } from 'react';
 //  background-color: ${props => props.theme.colors.secondary};
 // `
 const Com = () => {
-  for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
+        useEffect(() => {
+            alert('Com');
+        });
+    }
     useEffect(() => {
-      alert('Com');
+        alert('Com');
     });
-  }
-  useEffect(() => {
-    alert('Com');
-  });
-  return React.createElement('div', null, 'FC');
+    return React.createElement("div", null, "FC");
 };
 function TrainingComponent() {
-  useEffect(() => {
-    alert('TC');
-  });
-  return React.createElement('div', null, 'JSX');
+    useEffect(() => {
+        alert('TC');
+    });
+    return React.createElement("div", null, "JSX");
 }
 console.log('COM = ', Com);
 console.log('JSX = ', TrainingComponent);
