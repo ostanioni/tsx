@@ -39,9 +39,12 @@ Serve production version of the application
 # React - Type-Definitions Cheatsheet
 #### React.FC<Props> | React.FunctionComponent<Props>
 Type representing a functional component
-
-    `const MyComponent: React.FC<Props> = ...`
+```js
+    const MyComponent: React.FC<Props> = ...
+```
 #### React.Component<Props, State>
 Type representing a class component
 
-    `class MyComponent extends React.Component<Props, State> { ...`
+```js
+class MyComponent extends React.Component<Props, State> { ...
+```
