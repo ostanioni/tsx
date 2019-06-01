@@ -48,16 +48,12 @@ interface bttProps {
 const BackToTop: React.FC = () => {
   const bttEl = useRef(null);
   useEffect( ()=>{
-    function scrollHandler( ): void { 
-      try {
+    function scrollHandler(): void { 
       var bttHtmlEl: HTMLElement | null = bttEl.current;
       if ( bttHtmlEl ) {
         window.pageYOffset > 50 ? bttHtmlEl.classList.remove('is-hide') : bttHtmlEl.classList.add('is-hide')
       } else {
         console.error('BackToTop is null. (scrollHandler)');
-      }
-      } catch {
-        console.error('')
       }
     }
     window.addEventListener('scroll', scrollHandler);

@@ -34,17 +34,12 @@ const BackToTop = () => {
     const bttEl = useRef(null);
     useEffect(() => {
         function scrollHandler() {
-            try {
-                var bttHtmlEl = bttEl.current;
-                if (bttHtmlEl) {
-                    window.pageYOffset > 50 ? bttHtmlEl.classList.remove('is-hide') : bttHtmlEl.classList.add('is-hide');
-                }
-                else {
-                    console.error('BackToTop is null. (scrollHandler)');
-                }
+            var bttHtmlEl = bttEl.current;
+            if (bttHtmlEl) {
+                window.pageYOffset > 50 ? bttHtmlEl.classList.remove('is-hide') : bttHtmlEl.classList.add('is-hide');
             }
-            catch {
-                console.error('');
+            else {
+                console.error('BackToTop is null. (scrollHandler)');
             }
         }
         window.addEventListener('scroll', scrollHandler);
