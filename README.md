@@ -38,7 +38,6 @@ Serve production version of the application
 
 # Определение типов в React
 ### "Function Component"
-###<span style="color:#4527A0;">"Функциональный компонент"</span>
 ##### React.FC<Props> | React.FunctionComponent<Props>
 Type representing a functional component
 ```js
@@ -117,7 +116,7 @@ function useState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S
 type Dispatch<A> = (value: A) => void;
 type SetStateAction<S> = S | ((prevState: S) => S);
 ```
-####useEffect with TypeScript
+#### useEffect with TypeScript
 Official typing useEffect
 ```js
 function useEffect(effect: EffectCallback, deps?: DependencyList): void;
