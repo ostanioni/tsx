@@ -151,3 +151,256 @@ interface Context<T> {
   displayName?: string;
 }
 ```
+
+#### useReducer with TypeScript
+```js
+const [state, dispatch] = useReducer(reducer, initialState, init);
+```
+```js
+import * as React from 'react';
+
+enum ActionType {
+  Increment = 'increment',
+  Decrement = 'decrement',
+}
+
+interface IState {
+  count: number;
+}
+
+interface IAction {
+  type: ActionType;
+  payload: {
+    count: number; 
+  };
+}
+
+const initialState: IState = {count: 0};
+
+const reducer: React.Reducer<IState, IAction> = (state, action) => {
+  switch (action.type) {
+    case ActionType.Increment:
+      return {count: state.count + action.payload.count};
+    case ActionType.Decrement:
+      return {count: state.count - action.payload.count};
+    default:
+      throw new Error();
+  }
+}
+
+const ComplexState = () => {
+  const [state, dispatch] = React.useReducer<React.Reducer<IState, IAction>>(reducer, initialState);
+
+  return (
+    <div>
+      <div>Count: {state.count}</div>
+      <button onClick={
+        () => dispatch({type: ActionType.Increment, payload: { count: 1 } })
+      }>+</button>
+      <button onClick={
+        () => dispatch({type: ActionType.Decrement, payload: { count: 1 }})
+      }>-</button>
+    </div>  
+  );
+```
+The useReducer function can utilize the following types:
+```js
+type Dispatch<A> = (value: A) => void;
+type Reducer<S, A> = (prevState: S, action: A) => S;
+type ReducerState<R extends Reducer<any, any>> = R extends Reducer<infer S, any> ? S : never;
+type ReducerAction<R extends Reducer<any, any>> = R extends Reducer<any, infer A> ? A : never;
+
+function useReducer<R extends Reducer<any, any>, I>(
+  reducer: R,
+  initializerArg: I & ReducerState<R>,
+  initializer: (arg: I & ReducerState<R>) => ReducerState<R>
+): [ReducerState<R>, Dispatch<ReducerAction<R>>];
+
+function useReducer<R extends Reducer<any, any>, I>(
+  reducer: R,
+  initializerArg: I,
+  initializer: (arg: I) => ReducerState<R>
+): [ReducerState<R>, Dispatch<ReducerAction<R>>];
+
+function useReducer<R extends Reducer<any, any>>(
+  reducer: R,
+  initialState: ReducerState<R>,
+  initializer?: undefined
+): [ReducerState<R>, Dispatch<ReducerAction<R>>];
+```
+#### useCallback with TypeScript
+```js
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
+The TypeScript definition of useCallback is the following:
+```js
+function useCallback<T extends (...args: any[]) => any>(callback: T, deps: DependencyList): T;
+```
+#### useMemo with TypeScript
+```js
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+```js
+const computeExpensiveValue = (end: number) => {
+  let result = 0;
+
+  for (let i = 0; i < end * 1000000; i++) {
+    for (let j = 0; i < end * 1000; j++) {
+       result = result + i - j;
+    }
+  }
+
+  return result;
+};
+
+const MyComponent = ({ end = 0 }) => {
+  const memoizedNumber = React.useMemo<number>(computeExpensiveValue(end))
+    
+  return (
+    <DisplayResult result={memoizedNumber} />
+  );
+}
+```
+The TypeScript definition of useMemo is the following:
+```js
+function useMemo<T>(factory: () => T, deps: DependencyList): T;
+```
+#### useRef with TypeScript
+```js
+const refContainer = useRef(initialValue);
+```
+```js
+function TextInputWithFocusButton() {
+  // The type of our ref is an input element
+  const inputEl = useRef<HTMLInputElement>(null);
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  );
+}
+```
+The TypeScript definition for useRef is the following:
+```js
+function useRef<T>(initialValue: T): MutableRefObject<T>;
+  
+interface MutableRefObject<T> {
+  current: T;
+}
+```
+#### useImperativeHandle with TypeScript
+```js
+useImperativeHandle(ref, createHandle, [inputs])
+```
+```js
+function FancyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    }
+  }));
+  return <input ref={inputRef} ... />;
+}
+FancyInput = React.forwardRef(FancyInput);
+// You can now get a ref directly to the DOM button:
+const fancyInputRef = React.createRef();
+<FancyInput ref={fancyInputRef}>Click me!</FancyInput>;
+```
+The TypeScript definition of useImperativeHandle is the following:
+```js
+function useImperativeHandle<T, R extends T>(ref: Ref<T>|undefined, init: () => R, deps?: DependencyList): void;
+```
+#### useLayoutEffect with TypeScript
+```js
+function useLayoutEffect(effect: EffectCallback, deps?: DependencyList): void;
+```
+#### useDebugValue with TypeScript
+```js
+useDebugValue(value)
+```
+```js
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  // ...
+
+  // Show a label in DevTools next to this Hook
+  // e.g. "FriendStatus: Online"
+  useDebugValue(isOnline ? 'Online' : 'Offline');
+
+  return isOnline;
+}
+```
+#### Custom Hooks
+```js
+import React, { useState, useEffect } from 'react';
+
+type Hook = (friendID: number) => boolean
+
+interface IStatus {
+  id: number;
+  isOnline: boolean;
+}
+
+const useFriendStatus: Hook = (friendID) => {
+  // The type of the value and function are inferred
+  const [isOnline, setIsOnline] = useState<boolean | null>(null);
+
+  function handleStatusChange(status: IStatus) {
+    setIsOnline(status.isOnline);
+  }
+
+  useEffect(() => {
+    ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);
+    };
+  });
+
+  return isOnline;
+}
+```
+```js
+import * as React from 'react';
+import useFriendStatus from './useFriendStatus';
+
+interface IUser {
+  id: number;
+  username: string;
+}
+
+const FriendsListItem ({ user }) => {
+  // We know this value is a boolean since we defined our hook
+  const isOnline = userFriendStatus(user.id);
+  return (
+    <li>
+      <span style={{ backgroundColor: isOnline ? 'green' : 'red }} />
+      <span>
+        {user.username}
+      </span>
+    <li>
+  );
+};
+```
+This logic is now able to be extended to any component that needs to know the online status of a user
+```js
+interface FunctionComponent<P = {}> {
+  (props: P & { children?: ReactNode }, context?: any): ReactElement | null;
+  propTypes?: WeakValidationMap<P>;
+  contextTypes?: ValidationMap<any>;
+  defaultProps?: Partial<P>;
+  displayName?: string;
+}
+```
