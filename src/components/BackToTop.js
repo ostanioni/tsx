@@ -26,6 +26,16 @@ const BTTStyled = styled.span.attrs(props => ({
 }
 transition: right 0.5s;
 `;
+function toTop() {
+    window.scrollTo(0, 0);
+}
+// function scrollHandler1(bttHtmlEl:(HTMLSpanElement | null), setVisibility: (isVisible:boolean)=>void):void { 
+//   if ( bttHtmlEl ) {
+//     window.pageYOffset > 50 ? setVisibility(true): setVisibility(false);
+//   } else {
+//     console.error('BackToTop is null.');
+//   }
+// }
 // btt Component
 const BackToTop = () => {
     const [isVisible, setVisibility] = useState(false);
@@ -34,14 +44,10 @@ const BackToTop = () => {
         var bttHtmlEl = bttEl.current;
         if (bttHtmlEl) {
             window.pageYOffset > 50 ? setVisibility(true) : setVisibility(false);
-            // ? bttHtmlEl.classList.remove('is-hide'): bttHtmlEl.classList.add('is-hide');
         }
         else {
             console.error('BackToTop is null.');
         }
-    }
-    function toTop() {
-        window.scrollTo(0, 0);
     }
     useEffect(() => {
         // anything = null;

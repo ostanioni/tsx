@@ -41,13 +41,65 @@ Serve production version of the application
 ##### React.FC<Props> | React.FunctionComponent<Props>
 Type representing a functional component
 ```js
-const FunctionalComponent: React.FC<Props> = (props)=>{
-  ...
-  return (
-    ...
-  )
+interface Props {
+    Title: string;
+    Image: string;
+    Body: string;
 }
+const FunctionalComponent: React.FC<Props> = 
+    ({Title,Image,Body})=>{
+    ...
+        return (
+            ...
+        )
+    }
 ```
+### FC Typing Pattern
+`Counter.tsx`
+```js
+import * as React from 'react';
+
+type Props = {
+  label: string;
+  count: number;
+  onIncrement: () => void;
+};
+
+export const FCCounter: React.FC<Props> = props => {
+  const { label, count, onIncrement } = props;
+
+  const handleIncrement = () => {
+    onIncrement();
+  };
+
+  return (
+    <div>
+      <span>
+        {label}: {count}
+      </span>
+      <button type="button" onClick={handleIncrement}>
+        {`Increment`}
+      </button>
+    </div>
+  );
+};
+```
+### Spread attributes 
+```js
+import * as React from 'react';
+
+type Props = {
+  className?: string;
+  style?: React.CSSProperties;
+};
+
+export const FCSpreadAttributes: React.FC<Props> = props => {
+  const { children, ...restProps } = props;
+
+  return <div {...restProps}>{children}</div>;
+};
+```
+
 ##### Interface FunctionComponent
 ```js
 interface FunctionComponent<P = {}> {
@@ -73,6 +125,302 @@ class ClassComponent extends React.Component<Props, State> {
   }
 }
 ```
+#### Typings Pattern
+`Counter.tsx`
+```js
+import * as React from 'react';
+
+type Props = {
+  label: string;
+};
+
+type State = {
+  count: number;
+};
+
+export class ClassCounter extends React.Component<Props, State> {
+  readonly state: State = {
+    count: 0,
+  };
+
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    const { handleIncrement } = this;
+    const { label } = this.props;
+    const { count } = this.state;
+
+    return (
+      <div>
+        <span>
+          {label}: {count}
+        </span>
+        <button type="button" onClick={handleIncrement}>
+          {`Increment`}
+        </button>
+      </div>
+    );
+  }
+}
+```
+with default props
+```js
+import * as React from 'react';
+
+type Props = {
+  label: string;
+  initialCount: number;
+};
+
+type State = {
+  count: number;
+};
+
+export class ClassCounterWithDefaultProps extends React.Component<
+  Props,
+  State
+> {
+  static defaultProps = {
+    initialCount: 0,
+  };
+
+  readonly state: State = {
+    count: this.props.initialCount,
+  };
+
+  componentWillReceiveProps({ initialCount }: Props) {
+    if (initialCount != null && initialCount !== this.props.initialCount) {
+      this.setState({ count: initialCount });
+    }
+  }
+
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    const { handleIncrement } = this;
+    const { label } = this.props;
+    const { count } = this.state;
+
+    return (
+      <div>
+        <span>
+          {label}: {count}
+        </span>
+        <button type="button" onClick={handleIncrement}>
+          {`Increment`}
+        </button>
+      </div>
+    );
+  }
+}
+```
+### Generic Component
+```js
+import * as React from 'react';
+
+export interface GenericListProps<T> {
+  items: T[];
+  itemRenderer: (item: T) => JSX.Element;
+}
+
+export class GenericList<T> extends React.Component<GenericListProps<T>, {}> {
+  render() {
+    const { items, itemRenderer } = this.props;
+
+    return (
+      <div>
+        {items.map(itemRenderer)}
+      </div>
+    );
+  }
+}
+```
+### Render Props
+#### Name propvider
+simple component using children as a render prop
+```js
+import * as React from 'react';
+
+interface NameProviderProps {
+  children: (state: NameProviderState) => React.ReactNode;
+}
+
+interface NameProviderState {
+  readonly name: string;
+}
+
+export class NameProvider extends React.Component<NameProviderProps, NameProviderState> {
+  readonly state: NameProviderState = { name: 'Piotr' };
+
+  render() {
+    return this.props.children(this.state);
+  }
+}
+```
+##### Mouse Provider
+```js
+import * as React from 'react';
+
+export interface MouseProviderProps {
+  render: (state: MouseProviderState) => React.ReactNode;
+}
+
+interface MouseProviderState {
+  readonly x: number;
+  readonly y: number;
+}
+
+export class MouseProvider extends React.Component<MouseProviderProps, MouseProviderState> {
+  readonly state: MouseProviderState = { x: 0, y: 0 };
+
+  handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    this.setState({
+      x: event.clientX,
+      y: event.clientY,
+    });
+  };
+
+  render() {
+    return (
+      <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
+        {/*
+          Instead of providing a static representation of what <Mouse> renders,
+          use the `render` prop to dynamically determine what to render.
+        */}
+        {this.props.render(this.state)}
+      </div>
+    );
+  }
+}
+```
+### Higher-Order Components
+#### withState
+Adds state to a stateless counter
+```js
+import * as React from 'react';
+import { Subtract } from 'utility-types';
+
+// These props will be subtracted from base component props
+interface InjectedProps {
+  count: number;
+  onIncrement: () => void;
+}
+
+export const withState = <BaseProps extends InjectedProps>(
+  _BaseComponent: React.ComponentType<BaseProps>
+) => {
+  // fix for TypeScript issues: https://github.com/piotrwitek/react-redux-typescript-guide/issues/111
+  const BaseComponent = _BaseComponent as React.ComponentType<InjectedProps>;
+
+  type HocProps = Subtract<BaseProps, InjectedProps> & {
+    // here you can extend hoc with new props
+    initialCount?: number;
+  };
+  type HocState = {
+    readonly count: number;
+  };
+
+  return class Hoc extends React.Component<HocProps, HocState> {
+    // Enhance component name for debugging and React-Dev-Tools
+    static displayName = `withState(${BaseComponent.name})`;
+    // reference to original wrapped component
+    static readonly WrappedComponent = BaseComponent;
+
+    readonly state: HocState = {
+      count: Number(this.props.initialCount) || 0,
+    };
+
+    handleIncrement = () => {
+      this.setState({ count: this.state.count + 1 });
+    };
+
+    render() {
+      const { ...restProps } = this.props;
+      const { count } = this.state;
+
+      return (
+        <BaseComponent
+          count={count} // injected
+          onIncrement={this.handleIncrement} // injected
+          {...restProps}
+        />
+      );
+    }
+  };
+};
+```
+#### withErrorBoundary
+Adds error handling using componentDidCatch to any component
+```js
+import * as React from 'react';
+import { Subtract } from 'utility-types';
+
+const MISSING_ERROR = 'Error was swallowed during propagation.';
+
+// These props will be subtracted from base component props
+interface InjectedProps {
+  onReset: () => void;
+}
+
+export const withErrorBoundary = <BaseProps extends InjectedProps>(
+  _BaseComponent: React.ComponentType<BaseProps>
+) => {
+  // fix for TypeScript issues: https://github.com/piotrwitek/react-redux-typescript-guide/issues/111
+  const BaseComponent = _BaseComponent as React.ComponentType<InjectedProps>;
+
+  type HocProps = Subtract<BaseProps, InjectedProps> & {
+    // here you can extend hoc with new props
+  };
+  type HocState = {
+    readonly error: Error | null | undefined;
+  };
+
+  return class Hoc extends React.Component<HocProps, HocState> {
+    // Enhance component name for debugging and React-Dev-Tools
+    static displayName = `withErrorBoundary(${BaseComponent.name})`;
+    // reference to original wrapped component
+    static readonly WrappedComponent = BaseComponent;
+
+    readonly state: HocState = {
+      error: undefined,
+    };
+
+    componentDidCatch(error: Error | null, info: object) {
+      this.setState({ error: error || new Error(MISSING_ERROR) });
+      this.logErrorToCloud(error, info);
+    }
+
+    logErrorToCloud = (error: Error | null, info: object) => {
+      // TODO: send error report to service provider
+    };
+
+    handleReset = () => {
+      this.setState({ error: undefined });
+    };
+
+    render() {
+      const { children, ...restProps } = this.props;
+      const { error } = this.state;
+
+      if (error) {
+        return (
+          <BaseComponent
+            onReset={this.handleReset} // injected
+            {...restProps}
+          />
+        );
+      }
+
+      return children;
+    }
+  };
+};
+```
+
 ##### React.ComponentType<Props>
 Type representing union of (React.FC | React.Component) - used in HOC
 ```js
@@ -85,6 +433,43 @@ Gets Props type of a specified component XXX (WARNING: does not work with static
 ```js
 type MyComponentProps = React.ComponentProps<typeof MyComponent>;
 ```
+#### React.ReactElement | JSX.Element
+Type representing a concept of React Element - representation of a native DOM component (e.g. <div />), or a user-defined composite component (e.g. <MyComponent />)
+```js
+const elementOnly: React.ReactElement = <div /> || <MyComponent />;
+```
+#### React.ReactNode
+Type representing any possible type of React node (basically ReactElement (including Fragments and Portals) + primitive JS types)
+```js
+const elementOrPrimitive: React.ReactNode = 'string' || 0 || false || null || undefined || <div /> || <MyComponent />;
+const Component = ({ children: React.ReactNode }) => ...
+```
+#### React.CSSProperties
+Type representing style object in JSX - for css-in-js styles
+```js
+const styles: React.CSSProperties = { flexDirection: 'row', ...
+const element = <div style={styles} ...
+```
+#### React.HTMLProps<HTMLXXXElement>
+Type representing Props of specified HTML Element - for extending HTML Elements
+```js
+Type representing Props of specified HTML Element - for extending HTML Elements
+```
+#### React.ReactEventHandler<HTMLXXXElement>
+Type representing generic event handler - for declaring event handlers
+```js
+const handleChange: React.ReactEventHandler<HTMLInputElement> = (ev) => { ... } 
+
+<input onChange={handleChange} ... />
+```
+#### React.XXXEvent<HTMLXXXElement>
+Type representing more specific event handler. Some common event examples: `ChangeEvent, FormEvent, FocusEvent, KeyboardEvent, MouseEvent, DragEvent, PointerEvent, WheelEvent, TouchEvent.`
+```js
+const handleChange = (ev: React.MouseEvent<HTMLDivElement>) => { ... }
+
+<div onMouseMove={handleChange} ... />
+```
+
 ## React Hooks
 #### useState with TypeScript
 ```js

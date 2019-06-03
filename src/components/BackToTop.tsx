@@ -37,27 +37,29 @@ const BTTStyled = styled.span.attrs<bttsProps>(props=>({
 transition: right 0.5s;
 `;
 
-
-// btt Component props interface
-interface bttProps {
-
+function toTop():void {
+    window.scrollTo(0,0);
 }
+
+// function scrollHandler1(bttHtmlEl:(HTMLSpanElement | null), setVisibility: (isVisible:boolean)=>void):void { 
+//   if ( bttHtmlEl ) {
+//     window.pageYOffset > 50 ? setVisibility(true): setVisibility(false);
+//   } else {
+//     console.error('BackToTop is null.');
+//   }
+// }
 
 // btt Component
 const BackToTop: React.FC = () => {
-    const [isVisible, setVisibility] = useState<boolean>(false);
-    const bttEl = useRef<HTMLSpanElement>(null);
+  const [isVisible, setVisibility] = useState<boolean>(false);
+  const bttEl = useRef<HTMLSpanElement>(null);
   function scrollHandler(): void { 
      var bttHtmlEl: HTMLSpanElement | null = bttEl.current;
     if ( bttHtmlEl ) {
       window.pageYOffset > 50 ? setVisibility(true): setVisibility(false);
-      // ? bttHtmlEl.classList.remove('is-hide'): bttHtmlEl.classList.add('is-hide');
     } else {
       console.error('BackToTop is null.');
     }
-  }
-  function toTop():void {
-    window.scrollTo(0,0);
   }
   useEffect( ()=>{
    // anything = null;
