@@ -1,6 +1,5 @@
-
+"use strict";
 // import { createGlobalStyle } from 'styled-components'
-
 // const GlobalStyle = createGlobalStyle`
 //   html {
 //     font-family: Monospace, 'Roboto', 'Times New Roman', sans-serif;

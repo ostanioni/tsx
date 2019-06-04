@@ -1,5 +1,12 @@
-import React, {MouseEvent,CSSProperties} from 'react';
-import styled from 'styled-components';
+import React, {
+  useContext,
+  useEffect,
+  MouseEvent,
+  CSSProperties,
+} from 'react';
+//import { ThemeConsumer } from 'styled-components';
+import Theme from 'components/MyContext';
+// import styled from 'styled-components';
 //======================= Icon ==========================
 interface Icon {
   viewBox: string;
@@ -34,8 +41,8 @@ const times: Icon = {
   viewBox: '0 0 352 512',
   path: 'M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z',
 };
-// =============================================
-// =================== Icons Object ============
+// =================================================================================
+// =================== Icons Object ================================================
 interface IconsObject {
   bars: Icon;
   globe: Icon;
@@ -55,18 +62,20 @@ let Icons: IconsObject = {
   ellipsisV,
   times,
 };
-// ================================================
-// ================== NavIcon FunctionComponent====
-
-interface INavIcon {
+// ====================================================================================
+// ================== NavIcon FunctionComponent========================================
+interface NavIconProps {
   filter?: string;  
   name: 'bars' | 'globe' | 'hamburger' | 'lightbulb' | 'search' | 'ellipsisV' | 'times';
   color: string;
   width: string;
   onClick: ( (event: MouseEvent<HTMLDivElement>)=>void ) | undefined;
 };
-const NavIcon: React.FC<INavIcon> = ({ name, color, width, onClick, }) => {
-  
+// --------------------------------------
+const NavIcon: React.FC<NavIconProps> = ({ name, color, width, onClick, }) => {
+  const value = useContext<string>(Theme);
+  useEffect(() => { console.log(value) })
+
   const wrapperStyle: CSSProperties = {
     display: 'inline',
     cursor: 'pointer',
@@ -88,5 +97,6 @@ const NavIcon: React.FC<INavIcon> = ({ name, color, width, onClick, }) => {
     </div>
   )
 };
+// ================================================================================
 
 export default NavIcon;
