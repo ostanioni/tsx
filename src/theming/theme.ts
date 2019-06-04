@@ -1,7 +1,7 @@
 // / <reference path="styled.d.ts" />
 import { DefaultTheme } from 'styled-components';
 
-const myTheme: DefaultTheme = {
+const darkTheme: DefaultTheme = {
   colors: {
       primary: "#007bff",
     secondary: "#6c757d",
@@ -26,8 +26,86 @@ const myTheme: DefaultTheme = {
      grayDark: "#343a40",
   },
 };
+const lightTheme: DefaultTheme = {
+  colors: {
+      primary: "#007bff",
+    secondary: "#6c757d",
+      success: "#28a745",
+         info: "#17a2b8",
+      warning: "#ffc107",
+       danger: "#dc3545",
+        light: "#f8f9fa",
+         dark: "#343a40",
+         blue: "#007bff",
+       indigo: "#6610f2",
+       purple: "#6f42c1",
+         pink: "#e83e8c",
+          red: "#dc3545",
+       orange: "#fd7e14",
+       yellow: "#ffc107",
+        green: "#28a745",
+         teal: "#20c997",
+         cyan: "#17a2b8",
+        white: "#fff",
+         gray: "#6c757d",
+     grayDark: "#343a40",
+      },
+};
 
-export { myTheme };
+export { darkTheme, lightTheme };
+
+
+
+
+
+
+const common = {
+    "activeText": "#2188c6" // rgb(33,139,198)
+  }
+  const dark = {
+    ...common,
+    "bgColor": "#000", // rgb(33,33,33)
+    "bgHeader": "#000", // rgb(220,217,212)
+    "bgSideBar": "#212121",
+    "wg": "#212121", // rgb(33,33,33)
+    "link": "#e10050", // rgb(255,0,80)
+    "textColor": "#bebebe", // rgb(255,255,255)
+    "subText": "#bebebe", // rgb(190,190,190)
+    "headerShadow": "0 0 1.5rem rgb(62,166,255,0.5)",
+    "themeToggler": "rgb(62,166,255)",
+    "iconTheme": "#1bb",
+    "bsLink": "rgb(97,218,251)",
+    "IconBarsColor": "#e10050", // rgb(255,0,80)
+    "IconLightbulbColor": "#bebebe", // rgb(190,190,190)
+    "IconSearchColor": "rgb(62,166,255)",
+    "IconTimesColor": "#fff",
+  };
+  const light = {
+    ...common,
+    "bgColor": "#fff", // rgb(48,48,48)
+    "bgHeader": "#303030", // rgb(48,48,48)
+    "bgSideBar": "white",
+    "wg": "#212121", // rgb(33,33,33)
+    "link": "#e10050", // rgb(255,0,80)
+    "textColor": "#000", // rgb(255,255,255)
+    "subText": "#bebebe", // rgb(190,190,190)
+    "headerShadow": "0 0 1.5rem rgba(0,0,0,0.5)",
+    "themeToggler": "#fff",
+    "iconTheme": "#e10050",
+    "bsLink": "rgb(97,218,251)",
+    "IconBarsColor": "#e10050", // rgb(255,0,80),
+    "IconLightbulbColor": "#2188c6", // rgb(33,139,198),
+    "IconSearchColor": "#fff",
+    "IconTimesColor": "#000",
+  };
+  // bootstrapLinkBlue #61dafb rgb(97,218,251)
+  // googleLinkBlue rgb(62,166,255)
+  const themesStore = {
+    light,
+    dark
+  }
+  export default themesStore
+
 //   --breakpoint-xs: 0;
 //   --breakpoint-sm: 576px;
 //   --breakpoint-md: 768px;
