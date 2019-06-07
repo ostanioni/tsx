@@ -14,7 +14,8 @@ function App() {
       <NavIcons name='globe' color='red' width='10rem' onClick={(e)=>{
         let html: HTMLHtmlElement | null = document.querySelector('html');
         if(html){
-          html.style.filter="invert()";
+          html.style.backgroundColor= "#ccc";
+          html.style.filter="invert(100%)";
         }
       }}/>
     </Theme.Provider>

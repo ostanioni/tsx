@@ -1,0 +1,4 @@
+"use strict";
+img:not([src*=".svg"]), video {  
+   filter: invert(100%);
+}

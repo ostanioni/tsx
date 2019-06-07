@@ -9,7 +9,8 @@ function App() {
         React.createElement(NavIcons, { name: 'globe', color: 'red', width: '10rem', onClick: (e) => {
                 let html = document.querySelector('html');
                 if (html) {
-                    html.style.filter = "invert()";
+                    html.style.backgroundColor = "#ccc";
+                    html.style.filter = "invert(100%)";
                 }
             } })));
 }
