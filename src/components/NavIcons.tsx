@@ -44,13 +44,14 @@ const times: Icon = {
 // =================================================================================
 // =================== Icons Object ================================================
 interface IconsObject {
-  bars: Icon;
-  globe: Icon;
-  hamburger: Icon;
-  lightbulb: Icon;
-  search: Icon;
-  ellipsisV: Icon;
-  times: Icon;
+  // bars: Icon;
+  // globe: Icon;
+  // hamburger: Icon;
+  // lightbulb: Icon;
+  // search: Icon;
+  // ellipsisV: Icon;
+  // times: Icon;
+  [name:string]: Icon;
 }
 // -------
 let Icons: IconsObject = {
