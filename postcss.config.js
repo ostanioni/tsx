@@ -6,8 +6,10 @@ let $SOURCEMAP = devMode ? true : false
   
 module.exports = {
   sourceMap: $SOURCEMAP,
-  // importLoaders: 2,
+  // importLoaders: 1,
   // postcssNormalize(),
+  parser: 'postcss-scss',
+  syntax: 'postcss-scss',
   ident: 'postcss',
   plugins: [
     require('postcss-import')(),
@@ -20,6 +22,6 @@ module.exports = {
       'color-mod-function': { unresolved: 'warn', }
       }
     }),
-    require('cssnano')( {"preset": ["advanced", { "discardComments": {"removeAll": true,} }], } ),
+    // require('cssnano')( {"preset": ["advanced", { "discardComments": {"removeAll": true,} }], } ),
   ],  
 }
