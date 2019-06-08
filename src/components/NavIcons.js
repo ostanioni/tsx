@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, } from 'react';
 //import { ThemeConsumer } from 'styled-components';
 import Theme from 'components/MyContext';
+// import styled from 'styled-components';
+const process = require('process');
 ;
 //------------------
 const bars = {

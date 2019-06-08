@@ -7,6 +7,7 @@ import React, {
 //import { ThemeConsumer } from 'styled-components';
 import Theme from 'components/MyContext';
 // import styled from 'styled-components';
+const process = require('process');
 //======================= Icon ==========================
 interface Icon {
   viewBox: string;
