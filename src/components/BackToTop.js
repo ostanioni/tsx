@@ -26,7 +26,7 @@ const BackToTop = () => {
     function scrollHandler() {
         var iconHtmlEl = iconEl.current;
         if (iconHtmlEl) {
-            window.pageYOffset > 50 ? iconHtmlEl.style.right = '2.5rem' : iconHtmlEl.style.right = '-2.5rem';
+            window.pageYOffset > 70 ? iconHtmlEl.style.right = '2.5rem' : iconHtmlEl.style.right = '-2.5rem';
         }
         else {
             console.error('BackToTop is null.');

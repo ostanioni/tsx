@@ -661,6 +661,8 @@ const refContainer = useRef(initialValue);
 ```js
 function TextInputWithFocusButton() {
   // The type of our ref is an input element
+  
+  let ref: string | ((instance: HTMLDivElement | null) => void) | React.RefObject<HTMLDivElement> | null | undefined;
   const inputEl = useRef<HTMLInputElement>(null);
   const onButtonClick = () => {
     // `current` points to the mounted text input element

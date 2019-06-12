@@ -34,7 +34,7 @@ const BackToTop: React.FC = () => {
   function scrollHandler(): void { 
      var iconHtmlEl: HTMLDivElement | null = iconEl.current;
     if ( iconHtmlEl ) {
-      window.pageYOffset > 50 ? iconHtmlEl.style.right='2.5rem': iconHtmlEl.style.right='-2.5rem';
+      window.pageYOffset > 70 ? iconHtmlEl.style.right='2.5rem': iconHtmlEl.style.right='-2.5rem';
     } else {
       console.error('BackToTop is null.');
     }
