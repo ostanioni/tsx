@@ -73,7 +73,7 @@ module.exports = {
       css:        `${CONTEXT}/public/css`,
       imgs:       `${CONTEXT}/public/imgs`,
       snapsvg:    'snapsvg/dist/snap.svg.js',
-      theming:    `${CONTEXT}/src/theming`,
+      themes:     `${CONTEXT}/src/themes`,
     },
   },
   module: {

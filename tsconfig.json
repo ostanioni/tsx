@@ -19,7 +19,8 @@
     "baseUrl": "./src",
     "paths":{
       "components":["/components"],
-      "theming":["/themes"]
+      "themes":["/themes"],
+      "styles":["/styles"],
     }
   },
   "plugins": [
