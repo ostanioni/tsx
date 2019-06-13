@@ -9,6 +9,7 @@
     "jsx": "react",
     "locale": "ru",
     "strict": true,
+    "strictNullChecks": true,
     "lib": [
       "dom",
       "dom.iterable",
