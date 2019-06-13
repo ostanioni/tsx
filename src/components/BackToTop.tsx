@@ -2,9 +2,10 @@ import React, {
   useState, 
   useRef, 
   useEffect,
-  MouseEvent,
+  useContext,
   CSSProperties,
 } from 'react';
+import {ThemeCtx} from 'themes/Theme';
 import Icon from 'components/Icon';
 import { arrowCircleUp } from './svg/icons/awesome';
 
@@ -28,6 +29,8 @@ transition: 'right 0.5s',
 };
 // btt Component
 const BackToTop: React.FC = () => {
+  const theme = useContext(ThemeCtx);
+  console.log(theme);
   const [isVisible, setVisibility] = useState<boolean>(false);
   const iconEl: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
 

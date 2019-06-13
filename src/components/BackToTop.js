@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, } from 'react';
+import React, { useState, useRef, useEffect, useContext, } from 'react';
+import { ThemeCtx } from 'themes/Theme';
 import Icon from 'components/Icon';
 import { arrowCircleUp } from './svg/icons/awesome';
 // interface IBttProps {
@@ -21,6 +22,8 @@ const wrapperStyle = {
 };
 // btt Component
 const BackToTop = () => {
+    const theme = useContext(ThemeCtx);
+    console.log(theme);
     const [isVisible, setVisibility] = useState(false);
     const iconEl = useRef(null);
     function scrollHandler() {

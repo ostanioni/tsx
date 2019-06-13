@@ -20,7 +20,7 @@
     "paths":{
       "components":["/components"],
       "themes":["/themes"],
-      "styles":["/styles"],
+      "styles":["/styles"]
     }
   },
   "plugins": [
