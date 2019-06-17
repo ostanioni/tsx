@@ -33,7 +33,7 @@ const SCSS_SYNTAX = {
 const SCSS_SOURCE_MAP = {
   test: /\.scss$/,
   use: [
-    { loader: 'style-loader',   options: { sourceMap: true, importLoaders: 3,} },
+    { loader: 'style-loader',   options: { sourceMap: true, } },
     { loader: 'css-loader',     options: { sourceMap: true, importLoaders: 2, } },
     'postcss-loader',
     { loader: 'sass-loader',    options: { sourceMap: true, importLoaders: 0, } },
