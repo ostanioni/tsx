@@ -4,7 +4,7 @@ import React, {
   CSSProperties,
 } from 'react';
 import {Icon} from './svg/icons/awesome'
-import Theme from 'components/MyContext';
+// import Theme from 'components/MyContext';
 
 const process = require('process');
 
@@ -17,7 +17,7 @@ interface NavIconProps {
 };
 // --------------------------------------
 const NavIcon: React.FC<NavIconProps> = ({ icon, color, width }) => {
-  const value = useContext<string>(Theme);
+  // const value = useContext<string>(Theme);
 
   const pathStyle: CSSProperties = {
     transition: 'fill 0.5s easy-in-out',

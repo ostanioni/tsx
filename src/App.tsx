@@ -1,6 +1,7 @@
 import React, {Provider} from 'react';
 import {ThemeCtx, theme} from 'themes/Theme';
 import BackToTop from 'components/BackToTop';
+import './st.scss';
 
 
 function App() {

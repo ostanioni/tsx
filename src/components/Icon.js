@@ -1,10 +1,10 @@
-import React, { useContext, } from 'react';
-import Theme from 'components/MyContext';
+import React from 'react';
+// import Theme from 'components/MyContext';
 const process = require('process');
 ;
 // --------------------------------------
 const NavIcon = ({ icon, color, width }) => {
-    const value = useContext(Theme);
+    // const value = useContext<string>(Theme);
     const pathStyle = {
         transition: 'fill 0.5s easy-in-out',
     };

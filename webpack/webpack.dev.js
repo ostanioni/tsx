@@ -15,15 +15,28 @@ const JS_SOURCE_MAP = {
   test: /\.js$/,
       loader: "source-map-loader"
 }
-
+/***___SCSS_SYNTAX___ ***/
+const SCSS_SYNTAX = {
+  enforce: "pre",
+  test: /\.scss$/,
+  exclude: /node_modules/,
+  use: [
+    { loader: 'postcss-loader',
+      options: { 
+        parser: 'postcss-scss', 
+        syntax: 'postcss-scss',
+      } 
+    },
+  ]
+};
 /***___SCSS_SOURCE_MAP__ ***/
 const SCSS_SOURCE_MAP = {
   test: /\.scss$/,
   use: [
-    { loader: 'style-loader',   options: { sourceMap: true, } },
+    { loader: 'style-loader',   options: { sourceMap: true, importLoaders: 3,} },
     { loader: 'css-loader',     options: { sourceMap: true, importLoaders: 2, } },
     'postcss-loader',
-    { loader: 'sass-loader',    options: { sourceMap: true, importLoaders: 0, } }
+    { loader: 'sass-loader',    options: { sourceMap: true, importLoaders: 0, } },
   ],
   sideEffects: true,
 }
@@ -49,7 +62,7 @@ module.exports = merge(common, {
   },
   devtool: 'cheap-module-source-map', // 'source-map',
   module: {
-    rules: [ JS_SOURCE_MAP, SCSS_SOURCE_MAP, CSS_SOURCE_MAP ]
+    rules: [ JS_SOURCE_MAP, SCSS_SYNTAX, SCSS_SOURCE_MAP, CSS_SOURCE_MAP ]
   },
   optimization: {
     minimize: false,
